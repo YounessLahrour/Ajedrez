@@ -34,8 +34,15 @@ public class Posicion
         this.columna = columna;
     }
     
-    Posicion(int fila, char columna){
+    public Posicion(int fila, char columna){
         this.fila=fila;
         this.columna=columna;
     } 
+    
+    public Posicion(Posicion Posicion1)
+    {
+        this.fila=Posicion1.fila;
+        this.columna=Posicion1.columna;
+        
+    }
 }
