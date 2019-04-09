@@ -33,5 +33,9 @@ public class Posicion
         else
         this.columna = columna;
     }
-      
+    
+    Posicion(int fila, char columna){
+        this.fila=fila;
+        this.columna=columna;
+    } 
 }
