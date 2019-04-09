@@ -22,14 +22,14 @@ public class Posicion
     }
     public void setFila(int fila) {
         if(fila<1 || fila>8)
-            throw new IllegalArgumentException("La fila pasada como parametro no es valida, prueba con este intervalo [1,8]");
+            throw new IllegalArgumentException("ERROR: Fila no válida.");
         else
         this.fila = fila;
     }
 
     public void setColumna(char columna) {
         if(columna<'a' || columna>'h')
-            throw new IllegalArgumentException("La fila pasada como parametro no es valida, prueba con este intervalo [a,h]");
+            throw new IllegalArgumentException("ERROR: Columna no válida.");
         else
         this.columna = columna;
     }
@@ -42,7 +42,40 @@ public class Posicion
     public Posicion(Posicion Posicion1)
     {
         this.fila=Posicion1.fila;
-        this.columna=Posicion1.columna;
-        
+        this.columna=Posicion1.columna;    
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Posicion other = (Posicion) obj;
+        if (this.fila != other.fila) {
+            return false;
+        }
+        if (this.columna != other.columna) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "[fila=" + fila + ", columna=" + columna + ']';
+    }
+    
+    
 }
