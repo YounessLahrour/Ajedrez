@@ -34,5 +34,13 @@ private Posicion posicion;
         this.color=Color.NEGRO;
         this.posicion= new Posicion(8,'b');
     }
-
+    public Caballo(Color color){
+        if(color==Color.BLANCO)
+            this.color=color;
+            this.posicion= new Posicion(1,'b');
+        if(color==Color.NEGRO)
+            this.color=color;
+            this.posicion= new Posicion(8,'b');
+        
+    }
 }
