@@ -5,6 +5,8 @@
  */
 package org.iesalandalus.programacion.caballoajedrez;
 
+import javax.naming.OperationNotSupportedException;
+
 /**
  *
  * @author Youness
@@ -61,8 +63,89 @@ private Posicion posicion;
         else
         this.color=Caballo1.color;
         this.posicion=Caballo1.posicion;
-
+        
+        }
+    public void mover(Direccion nuevaDireccion) throws OperationNotSupportedException
+    {
+      int fila=posicion.getFila();
+      int nuevaFila;
+      char columna=posicion.getColumna();
+      char nuevaColumna;
+      
+      try{
+      
+          switch(nuevaDireccion)
+          {
+              case ARRIBA_IZQUIERDA:
+                  nuevaFila=fila+2;
+                  nuevaColumna=(char)(columna-1);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+                  
+              break;
+              
+              case ARRIBA_DERECHA:
+                  nuevaFila=fila+2;
+                  nuevaColumna=(char)(columna+1);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+              break;
+              
+              case DERECHA_ABAJO:
+                  nuevaFila=fila-1;
+                  nuevaColumna=(char)(columna+2);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+              break;
+                  
+              case DERECHA_ARRIBA:
+                  nuevaFila=fila+1;
+                  nuevaColumna=(char)(columna+2);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+              break;    
+                
+              case IZQUIERDA_ABAJO:
+                  nuevaFila=fila-2;
+                  nuevaColumna=(char)(columna-1);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+              break;  
+              
+              case IZQUIERDA_ARRIBA:
+                  nuevaFila=fila-2;
+                  nuevaColumna=(char)(columna+1);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+              break;
+              
+              case ABAJO_DERECHA:
+                  nuevaFila=fila-2;
+                  nuevaColumna=(char)(columna+1);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+              break;
+              
+              case ABAJO_IZQUIERDA:
+                  nuevaFila=fila-2;
+                  nuevaColumna=(char)(columna-1);
+                  posicion.setFila(nuevaFila);
+                  posicion.setColumna(nuevaColumna);
+              break;
+              default:
+                  throw new OperationNotSupportedException("Movimiento erróneo");
+          }
+          }catch (IllegalArgumentException e) 
+          {
+            posicion.setColumna(columna);
+            posicion.setFila(fila);
+            throw new OperationNotSupportedException("ERROR: Movimiento no válido.");
+           }
+              
+          }
+        
     }
+    
             }
         
        
