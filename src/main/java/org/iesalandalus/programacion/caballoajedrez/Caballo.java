@@ -5,6 +5,7 @@
  */
 package org.iesalandalus.programacion.caballoajedrez;
 
+import java.util.Objects;
 import javax.naming.OperationNotSupportedException;
 
 /**
@@ -33,10 +34,15 @@ private Posicion posicion;
     }
 
     public Caballo(){
+        
         this.color=Color.NEGRO;
         this.posicion= new Posicion(8,'b');
     }
-    public Caballo(Color color){
+    public Caballo(Color color)
+    {
+        if(color==null) throw new IllegalArgumentException("ERROR: No se puede asignar un color nulo.");
+            this.color=color;
+            
         if(color==Color.BLANCO)
             this.color=color;
             this.posicion= new Posicion(1,'b');
@@ -44,7 +50,9 @@ private Posicion posicion;
             this.color=color;
             this.posicion= new Posicion(8,'b');
     }     
-    public Caballo(Color color, char columna){
+    public Caballo(Color color, char columna)
+    {
+       if (color==null) throw new IllegalArgumentException("ERROR: No se puede asignar un color nulo."); 
         
         if(columna=='b' || columna=='g'){
             
@@ -57,14 +65,7 @@ private Posicion posicion;
             }
         } else throw new IllegalArgumentException("ERROR: Has pasado un parametro nulo");
                     }
-    public Caballo(Caballo Caballo1){
-        if(Caballo1==null)
-        throw new IllegalArgumentException("ERROR: No es posible copiar un caballo nulo.");
-        else
-        this.color=Caballo1.color;
-        this.posicion=Caballo1.posicion;
-        
-        }
+    
     public void mover(Direccion nuevaDireccion) throws OperationNotSupportedException
     {
       int fila=posicion.getFila();
@@ -143,10 +144,39 @@ private Posicion posicion;
            }
               
           }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.color);
+        hash = 79 * hash + Objects.hashCode(this.posicion);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Caballo other = (Caballo) obj;
+        if (this.color != other.color) {
+            return false;
+        }
+        if (!Objects.equals(this.posicion, other.posicion)) {
+            return false;
+        }
+        return true;
+    }
         
     }
     
-            }
+            
         
        
    
